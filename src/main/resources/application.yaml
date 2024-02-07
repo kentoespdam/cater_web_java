@@ -1,0 +1,48 @@
+server:
+  port: ${SERVER_PORT:8080}
+spring:
+  main:
+    banner-mode: off
+  application:
+    name: CATER_WEB_BACKEND
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 50MB
+      max-request-size: 50MB
+  datasource:
+    url: jdbc:mysql://${DB_HOST:192.168.230.84}:${DB_PORT:3306}/${DB_SCHEMA:pd}?useSSL=false&allowMultiQueries=true&serverTimezone=UTC&rewriteBatchedStatements=true&zeroDateTimeBehavior=convertToNull
+    username: ${DB_USER:dev}
+    password: ${DB_PASSWORD:password}
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: ${DB_POOL_SIZE:10}
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: none
+    properties:
+      hibernate:
+        format_sql: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: ERROR
+        type:
+          descriptor:
+            sql: ERROR
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    operations-sorter: alpha
+    tags-sorter: alpha
+
+appwrite:
+  endpoint: http://192.168.230.254:82
+  project_id: 65c1d651382b894f8b15
+  api_key: 7f3eb207066d0b2a15f3ed92f126062b4afc6e17b552dbe711cb98c883d9d4a9abac4deb80c1200a26592506fe51e995535f7fd7ad592bac4e32b80d2d381cb74f63541324ae88d4d4181d55897823aa409cf2ce93cd959d09f4e9a4ff66577f9d9c28e0572a354d66f539a594cc1f0feab6696c142ec9f8ae688b484ebcfdc1
